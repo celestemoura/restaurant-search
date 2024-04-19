@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge #1</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form autocomplete="off">
+                    <input
+                    type="text"
+                    placeholder="Enter UK postcode"
+                    class="search-field"
+                    id="postcode-input"
+                    />
+                    <input
+                    type="submit"
+                    placeholder="Submit"
+                    class="submit-button"
+                    id="postcode-submit"
+                    />
+                </form>
+            </div>
+            <div class="row">
+            <h1>Restaurants near you</h1>
+            <div class="col-6 search-results">
+                <h2 class="restaurant-name">Name</h2>
+                <p class="cuisines">Cuisines</p>
+                <p class="rating">Rating</p>
+                <p class="address">Address</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/app.js"></script>
+</body>
+</html>
