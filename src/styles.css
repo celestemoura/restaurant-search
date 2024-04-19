@@ -1,0 +1,19 @@
+.container {
+    padding: 100px 50px 50px;
+}
+
+.form-col {
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.restaurant-content {
+    padding-bottom: 50px;
+}

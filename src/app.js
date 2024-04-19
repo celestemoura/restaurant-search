@@ -5,7 +5,8 @@ function handleSubmit(event) {
     if (postcode.length > 0) {
         search(postcode);
     } else {
-        alert('Please enter a valid UK postcode');
+        // alert('Please enter a valid UK postcode');
+        handleErrors()
     }
 }
 
@@ -15,60 +16,42 @@ postcodeSearch.addEventListener("submit", handleSubmit)
 function search(postcode) {
     let apiUrl = `https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/${postcode}`;
 
-    fetch(apiUrl).then(function (response) {
-      console.log(response);
-      if (response) {
-        axios.get(apiUrl).then(display);
-      } else {
-        handleErrors();
-      }
-    })
-
-  function handleErrors() {
-    alert('No matches!');
-    }
+   axios.get(apiUrl).then(display);
 };
 
+function handleErrors() {
+     alert("Please enter a valid UK postcode");
+}
+
 function display(response) {
-    let searchResults = response.data.restaurants;
-    let cuisineResults = null;
+  let searchResults = response.data.restaurants;
 
-     let searchResultsContainer = document.querySelector(".search-results");
-     let searchResultsHTML = `<div class="row">`;
+  if (searchResults.length < 1) {
+    alert("No matches!");
+  } else {
+     let searchResultsCol = document.querySelector(".search-results");
+     let searchResultsHTML = `<h1>Restaurants near you</h1>`;
 
-     searchResults.forEach(function (something, index) {
-        if (index <= 10) {
+     searchResults.forEach(function (restaurant, index) {
+       if (index <= 10) {
+         let cuisines = restaurant.cuisines
+           .map((cuisine) => cuisine.name)
+           .join(", ");
 
-          cuisineResults = searchResults[index].cuisines;
-           console.log(cuisineResults.length);
+         searchResultsHTML += `<div class="col-6 text-center restaurant-content"><h2 class="restaurant-name">${restaurant.name}</h2>
+      <p class="cuisines">${cuisines}</p>
+          <p class="rating">Average rating: ${restaurant.rating.starRating}</p>
+          <p class="address">Address: <br /> ${restaurant.address.firstLine}<br />
+          ${restaurant.address.postalCode}<br />
+          ${restaurant.address.city}</p>
+        </div>`;
+       }
+     });
 
-          for (let i = 0; i < cuisineResults.length; i++) {
-            if (cuisineResults.length > 1) {
-                cuisineResults.push(cuisineResults[i].name);
-              console.log(cuisineResults);
-            } else {
-              console.log("só 1");
-            }
-          }
-
-          searchResultsHTML =
-            searchResultsHTML +
-            `<div class="col-6 search-results">
-              <h2 class="restaurant-name">${searchResults[index].name}</h2>
-              <p class="cuisines">
-              ${cuisineResults}</p>
-              <p class="rating">${searchResults[index].rating.starRating}</p>
-              <p class="address">${searchResults[index].address.firstLine}
-              <br />
-              ${searchResults[index].address.postalCode}
-              <br />
-              ${searchResults[index].address.city}
-              </p>
-          </div>`;
-          searchResultsHTML = searchResultsHTML + `</div>`;
-          searchResultsContainer.innerHTML = searchResultsHTML;
-        }
-     })
+     searchResultsHTML += `</div>`;
+     searchResultsCol.innerHTML = searchResultsHTML;
+  }
+  
 }
 
 search();
