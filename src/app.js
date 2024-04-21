@@ -2,11 +2,18 @@ function handleSubmit(event) {
     event.preventDefault();
     let postcode = document.querySelector("#postcode-input").value;
 
-    if (postcode.length > 0) {
-        search(postcode);
+    let formattedPostcode = "";
+    for (let i = 0; i < postcode.length; i++) {
+        if (postcode[i] !== " ") {
+            formattedPostcode += postcode[i];
+        }
+    }
+    console.log(formattedPostcode);
+
+    if (formattedPostcode.length > 0) {
+      search(formattedPostcode);
     } else {
-        // alert('Please enter a valid UK postcode');
-        handleErrors()
+      handleErrors();
     }
 }
 
@@ -17,6 +24,8 @@ function search(postcode) {
     let apiUrl = `https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/${postcode}`;
 
    axios.get(apiUrl).then(display);
+       console.log(apiUrl);
+
 };
 
 function handleErrors() {
@@ -27,7 +36,7 @@ function display(response) {
   let searchResults = response.data.restaurants;
 
   if (searchResults.length < 1) {
-    alert("No matches!");
+    handleErrors();
   } else {
      let searchResultsCol = document.querySelector(".search-results");
      let searchResultsHTML = `<h1>Restaurants near you</h1>`;
@@ -51,7 +60,6 @@ function display(response) {
      searchResultsHTML += `</div>`;
      searchResultsCol.innerHTML = searchResultsHTML;
   }
-  
 }
 
-search();
+search("EC4M7RF");
