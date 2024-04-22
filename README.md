@@ -22,26 +22,28 @@ To overcome this issue:
 As of right now, these are the 3 possible outcomes for a successful API request and search:
 
 >> 3c. postcode ```null``` or invalid: you will see a browser alert;
->> 3d. postcode valid but:
->>> 3d.1 returns 0 results: DOM is updated, "no restaurants in the area";
->>> 3d.2 returns > 0 results: DOM is updated with search results.
+>> 
+>> 3d. postcode valid:
+>> 
+>>> 3d.1 but returns 0 results: DOM is updated, "no restaurants in the area";
+>>> 
+>>> 3d.2 and returns more than 0 results: DOM is updated with search results.
 
-4. To stop the live server, ctrl + C in the terminal.
+4. Search by UK postcode. Blank spaces will be trimmed and the search is case-insensitive.
 
-5. Search by UK postcode.
-
+5. To stop the live server, ctrl + C in the terminal.
+   
 
 # assumptions
 1. Every request will be handled: no network or server errors.
 2. Every valid UK postcode will return results: this has, however, proven to be untrue during testing, so I went back and made changes to the ```display``` function and the error handling.
 3. No API key was provided, so the assumption was it was not required.
-4. Postcode input value needs to be trimmed since users might enter it by typing (most likely without blank spaces) or by copying and pasting (most likely with at least 1 blank space). There may also be blank spaces at the beginning and/or end of the input value.
 
 # unclarities
 The beginning would have been easier if the challenge prompt included some information about CORS.
 
 # possible improvements
 1. Smaller commits: they are easier to understand AND to revert if necessary.
-2. Error handling for network and server errors.
+2. Error handling for network and server errors (including retries).
 3. More general refactoring like in variable naming, HTML structure and injection, and error handling.
 4. Talk about CORS with more experienced developers.
