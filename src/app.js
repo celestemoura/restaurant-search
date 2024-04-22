@@ -44,21 +44,30 @@ function handleErrors() {
 
 function display(response) {
   let searchResults = response.data.restaurants;
+  console.log(response.data.metaData.location)
 
-  if (searchResults.length < 1) {
+  if (response.data.metaData.location == null) {
     handleErrors();
+  } else if (
+    response.data.metaData.resultCount == 0
+  ) {
+    let searchResultsCol = document.querySelector(".search-results");
+    let searchResultsHTML = `<h1>No restaurants near you... ☹️ </h1>`;
+
+    searchResultsHTML += `</div>`;
+    searchResultsCol.innerHTML = searchResultsHTML;
   } else {
     let searchResultsCol = document.querySelector(".search-results");
     let searchResultsHTML = `<h1>Restaurants near you</h1>`;
 
     searchResults.forEach(function (restaurant, index) {
       if (index <= 9) {
-
         // loop through the array of objects to get the cuisine names for each restaurant
-        let cuisines = restaurant.cuisines.map((cuisine) => cuisine.name).join(", ");
+        let cuisines = restaurant.cuisines
+          .map((cuisine) => cuisine.name)
+          .join(", ");
 
-          searchResultsHTML += 
-          `<div class="col-6 text-center restaurant-content">
+        searchResultsHTML += `<div class="col-6 text-center restaurant-content">
           <h2 class="restaurant-name">${restaurant.name}</h2>
           <p class="cuisines">${cuisines}</p>
           <p class="rating"><i class="fa-solid fa-star"></i>${restaurant.rating.starRating}</p>
@@ -71,5 +80,5 @@ function display(response) {
 
     searchResultsHTML += `</div>`;
     searchResultsCol.innerHTML = searchResultsHTML;
-    }
+  }
 }
