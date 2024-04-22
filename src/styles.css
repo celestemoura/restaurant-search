@@ -32,7 +32,7 @@ h2 {
 }
 
 .restaurant-content {
-    @media (min-width: 540px) {
+    @media (min-width: 960px) {
         padding: 0 50px 50px;
     }
 }
