@@ -1,19 +1,46 @@
-.container {
-    padding: 100px 50px 50px;
-}
-
-.form-col {
-    padding-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 h1 {
-    padding-bottom: 50px;
     text-align: center;
 }
 
-.restaurant-content {
+h1, .form-col, .restaurant-content {
     padding-bottom: 50px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 100px 50px 50px;
+}
+
+.fa-star {
+    font-size: 12px;
+    padding-right: 8px;
+}
+
+.form-col {
+    display: flex;
+    justify-content: center;
+}
+
+#loading-spinner {
+    display: block;
+    margin: 0 auto;
+}
+
+.restaurant-content {
+    @media (min-width: 540px) {
+        padding: 0 50px 50px;
+    }
+}
+
+.search-field, .submit-button {
+    border-radius: 6px;
+}
+
+.submit-button {
+    background: #FFFFFF;
 }
