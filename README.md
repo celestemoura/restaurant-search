@@ -2,24 +2,20 @@
  
 This restaurant search uses the Just Eat API to fetch restaurant data based on the UK postcode sent by the form. Enter a valid postcode in the input field and press search to trigger an API call. The search is limited to 10 results and will display restaurant name, cuisines, star rating, and address.
 
-<!-- Add how to build, compile and run your solution into the README
-● Include any assumptions or things that were not clear to you in the README
-● Include any improvements you’d make to your solution in the README -->
-
 
 # how to run
 
-1. Is Node.js already installed? To verify, run ```which npm``` in the terminal. If you see anything there, it is installed. If you do not see anything, go to ```nodejs.org``` and download Node.js, then follow instructions to install.
+1. Make sure to have Node.js and ```npm``` installed.
 
-2. Install live-server: ```npm install -g live-server```
+2. Start the server by running ```npx live-server``` in the terminal. Browser will open automatically.
 
-3. Start the server by running ```live-server```
+3. Because of CORS, calls from the browser will fail. To be able to run the app locally: 
+    a. on Chrome, download and install the <a target="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf">Allow CORS: Access-Control-Allow-Origin</a> extension. Once extension is active, search again;
+    b. on Safari, temporarily disable CORS checks in the browser (Safari > ```Settings``` > ```Advanced``` > enable checkbox ```Show features for web developers``` > ```Developer``` > enable checkbox ```Security``` : ```Disable cross-origin restrictions```). 
 
-4. Browser will open automatically.
+4. To stop the live server, ctrl + C in the terminal.
 
-5. To stop the live server, ctrl + C in the terminal.
-
-6. Search by UK postcode.
+5. Search by UK postcode.
 
 
 # assumptions or things that were not clear
@@ -30,7 +26,11 @@ This restaurant search uses the Just Eat API to fetch restaurant data based on t
 3. No API key was provided, so the assumption was it was not required.
 4. Postcode input value needs to be trimmed since users might enter it by typing (most likely without blank spaces) or by copying and pasting (most likely with at least 1 blank space). There may also be blank spaces at the beginning and/or end of the input value.
 
+## unclarities
+The beginning would have been easier if the challenge prompt included some information about CORS.
+
 ## possible improvements
 1. Smaller commits: they are easier to understand AND to revert if necessary.
 2. Error handling for network and server errors.
 3. More general refactoring like variable naming, HTML structure and injection, and error handling.
+4. Talk about CORS with more experienced developers.
