@@ -15,8 +15,8 @@ function handleSubmit(event) {
     }
   }
 
-  if (formattedPostcode.length > 0) {
-    search(formattedPostcode);
+  if (formattedPostcode.toUpperCase().length > 0) {
+    search(formattedPostcode.toUpperCase());
   } else {
     handleErrors();
   }
