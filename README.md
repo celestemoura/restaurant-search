@@ -9,7 +9,7 @@ This restaurant search uses the Just Eat API to fetch restaurant data based on t
 
 # how to run
 
-1. Is Node.js already installed? To verify, run ``` which npm``` in the terminal. If you see anything there, it is installed. If you do not see anything, go to ```nodejs.org``` and download Node.js, then follow instructions to install.
+1. Is Node.js already installed? To verify, run ```which npm``` in the terminal. If you see anything there, it is installed. If you do not see anything, go to ```nodejs.org``` and download Node.js, then follow instructions to install.
 
 2. Install live-server: ```npm install -g live-server```
 
