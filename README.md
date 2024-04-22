@@ -10,7 +10,7 @@ This restaurant search uses the Just Eat API to fetch restaurant data based on t
 2. Start the server by running ```npx live-server``` in the terminal. Browser will open automatically.
 
 3. Because of CORS, calls from the browser will fail. To be able to run the app locally: 
-    a. on Chrome, download and install the <a target="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf">Allow CORS: Access-Control-Allow-Origin</a> extension. Once extension is active, search again;
+    a. on Chrome, download and install the [Allow CORS: Access-Control-Allow-Origin](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) extension. Once extension is active, search again;
     b. on Safari, temporarily disable CORS checks in the browser (Safari > ```Settings``` > ```Advanced``` > enable checkbox ```Show features for web developers``` > ```Developer``` > enable checkbox ```Security``` : ```Disable cross-origin restrictions```). 
 
 4. To stop the live server, ctrl + C in the terminal.
