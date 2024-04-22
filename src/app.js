@@ -1,10 +1,12 @@
-let loadingSpinner = document.getElementById("loading-spinner");
+let loadingSpinnerRow = document.querySelector(".spinner-row");
+let searchResultsRow = document.querySelector(".search-results");
 
 function handleSubmit(event) {
   event.preventDefault();
   let postcode = document.querySelector("#postcode-input").value;
-
-  loadingSpinner.classList.remove("d-none");
+  
+  searchResultsRow.innerHTML = "";
+  loadingSpinnerRow.classList.remove("d-none");
 
   let formattedPostcode = "";
   for (let i = 0; i < postcode.length; i++) {
@@ -27,7 +29,7 @@ function search(postcode) {
   let apiUrl = `https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/${postcode}`;
 
   // make sure loading spinner is present
-  loadingSpinner.classList.remove("d-none");
+  loadingSpinnerRow.classList.remove("d-none");
 
   axios
     .get(apiUrl)
@@ -38,7 +40,7 @@ function search(postcode) {
       handleErrors();
     })
     .finally(() => {
-      loadingSpinner.classList.add("d-none");
+      loadingSpinnerRow.classList.add("d-none");
     });
 }
 
@@ -49,12 +51,11 @@ function handleErrors() {
 
 function display(response) {
   let searchResults = response.data.restaurants;
-  let searchResultsRow = document.querySelector(".search-results");
 
   if (response.data.metaData.location == null) {
     handleErrors();
   } else if (response.data.metaData.resultCount == 0) {
-    let searchResultsHTML = `<div class="col-12"><h1>No restaurants near you... ☹️ </h1></div></div>`;
+    let searchResultsHTML = `<div class="col-12"><h1>No restaurants in the area... ☹️ </h1></div></div>`;
     searchResultsRow.innerHTML = searchResultsHTML;
   } else {
     let searchResultsHTML = `<h1>Restaurants near you</h1>`;
